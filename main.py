@@ -10,19 +10,15 @@ from obd import OBDStatus
 import time
 from kivy.clock import Clock
 
-n = 0
 
 class BoxL(BoxLayout):
-    global n
     def __init__(self, **kwargs):
         global connection, connected, ids
         super(BoxL, self).__init__()
 
         connected = False
-        connection = obd.OBD()
+        
 
-
-        n = 0
 
         ids = self.ids
 
@@ -33,8 +29,9 @@ class BoxL(BoxLayout):
 
 
     def checkConnection(self):
-        global n
+        global connection
 
+        connection = obd.OBD()
         c = []
 
         if connection.status() == OBDStatus.OBD_CONNECTED or connection.status() == OBDStatus.ELM_CONNECTED:
